@@ -55,7 +55,7 @@ jobs:
             ./frontend
 
       - name: Scan backend container
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: barista-backend:ci
           format: table
@@ -64,7 +64,7 @@ jobs:
           exit-code: "1"
 
       - name: Scan frontend container
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@v0.36.0
         with:
           image-ref: barista-frontend:ci
           format: table
