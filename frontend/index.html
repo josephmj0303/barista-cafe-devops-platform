@@ -534,7 +534,7 @@ Bootstrap 5 HTML CSS Template
                             </div>
 
                             <div class="col-lg-6 col-12">
-                                <form action="#" method="post" class="custom-form contact-form" role="form">
+                                <form id="contact-form" action="#" method="post" class="custom-form contact-form" role="form">
 
                                 <div class="row">
                                     
@@ -666,6 +666,35 @@ Bootstrap 5 HTML CSS Template
         <script src="js/click-scroll.js"></script>
         <script src="js/vegas.min.js"></script>
         <script src="js/custom.js"></script>
+        <script src="assets/js/api.js"></script>
+        <script>
+            const contactForm = document.getElementById("contact-form");
 
+            if (contactForm) {
+                contactForm.addEventListener("submit", async function (event) {
+                    event.preventDefault();
+
+                    const formData = new FormData(contactForm);
+
+                    const payload = {
+                        name: formData.get("name"),
+                        email: formData.get("email"),
+                        message: formData.get("message")
+                    };
+
+                    try {
+                        const result = await submitJsonForm(
+                            "http://127.0.0.1:5000/api/contact",
+                            payload
+                        );
+
+                        alert(result.message);
+                        contactForm.reset();
+                    } catch (error) {
+                        alert(error.message);
+                    }
+                });
+            }
+        </script>
     </body>
 </html>

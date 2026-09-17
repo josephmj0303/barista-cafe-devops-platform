@@ -90,7 +90,7 @@ Bootstrap 5 HTML CSS Template
                             <div class="booking-form-wrap">
                                 <div class="row">
                                     <div class="col-lg-7 col-12 p-0">
-                                        <form class="custom-form booking-form" action="#" method="post" role="form">
+                                        <form id="reservation-form" class="custom-form booking-form" action="#" method="post" role="form">
                                             <div class="text-center mb-4 pb-lg-2">
                                                 <em class="text-white">Fill out the booking form</em>
 
@@ -104,7 +104,7 @@ Bootstrap 5 HTML CSS Template
                                                     </div>
 
                                                     <div class="col-lg-6 col-12">
-                                                        <input type="tel" class="form-control" name="booking-form-phone" placeholder="Phone: 085 456 7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required="">
+                                                        <input type="tel" class="form-control" name="booking-form-phone" placeholder="Phone: 9876543210" required>
                                                     </div>
 
                                                     <div class="col-lg-6 col-12">
@@ -242,6 +242,40 @@ Bootstrap 5 HTML CSS Template
         <script src="js/jquery.sticky.js"></script>
         <script src="js/vegas.min.js"></script>
         <script src="js/custom.js"></script>
+        <script src="assets/js/api.js"></script>
 
+        <script>
+            const reservationForm = document.getElementById("reservation-form");
+
+            if (reservationForm) {
+                reservationForm.addEventListener("submit", async function (event) {
+                    event.preventDefault();
+
+                    const formData = new FormData(reservationForm);
+
+                    const payload = {
+                        customer_name: formData.get("booking-form-name"),
+                        email: formData.get("booking-form-email"),
+                        phone: formData.get("booking-form-phone"),
+                        reservation_date: formData.get("booking-form-date"),
+                        reservation_time: formData.get("booking-form-time"),
+                        guest_count: Number(formData.get("booking-form-number")),
+                        special_request: formData.get("booking-form-message") || ""
+                    };
+
+                    try {
+                        const result = await submitJsonForm(
+                            "http://127.0.0.1:5000/api/reservations",
+                            payload
+                        );
+
+                        alert(result.message);
+                        reservationForm.reset();
+                    } catch (error) {
+                        alert(error.message);
+                    }
+                });
+            }
+        </script>
     </body>
 </html>
