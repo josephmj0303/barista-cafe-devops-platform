@@ -28,6 +28,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Run backend tests
+        run: |
+          pytest -q backend/tests
+
+      - name: Scan Python dependencies
+        working-directory: backend
+        run: |
+          python -m pip install pip-audit
+          pip-audit -r requirements.txt
+
       - name: Validate backend Python syntax
         run: |
           python -m py_compile backend/app.py
@@ -43,3 +53,21 @@ jobs:
           docker build \
             --tag barista-frontend:ci \
             ./frontend
+
+      - name: Scan backend container
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: barista-backend:ci
+          format: table
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: "1"
+
+      - name: Scan frontend container
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: barista-frontend:ci
+          format: table
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: "1"
