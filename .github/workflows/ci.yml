@@ -209,3 +209,32 @@ jobs:
             --document-name "AWS-RunShellScript" \
             --parameters 'commands=["sudo docker compose -f /opt/barista/docker-compose.yml pull","sudo docker compose -f /opt/barista/docker-compose.yml up -d","sudo docker compose -f /opt/barista/docker-compose.yml ps"]' \
             --comment "Deploy Barista Cafe production"
+
+  notify-failure:
+    name: Notify Slack on Failure
+    needs:
+      - test-and-scan
+      - terraform
+      - build-and-push
+      - deploy-staging
+      - deploy-production
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Slack failure notification
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+          webhook-type: incoming-webhook
+          payload: |
+            text: |
+              🚨 Barista Cafe CI/CD Pipeline Failed
+
+              Repository: ${{ github.repository }}
+              Branch: ${{ github.ref_name }}
+              Workflow: ${{ github.workflow }}
+              Run: ${{ github.run_number }}
+              Commit: ${{ github.sha }}
+
+              Check GitHub Actions for the failed job.
