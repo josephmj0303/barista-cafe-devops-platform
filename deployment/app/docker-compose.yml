@@ -1,4 +1,3 @@
-sudo tee /opt/barista/docker-compose.yml > /dev/null <<'EOF'
 services:
   backend:
     image: josephmj0303/barista-cafe-backend:latest
@@ -20,4 +19,3 @@ services:
       - "8080:80"
     depends_on:
       - backend
-EOF
