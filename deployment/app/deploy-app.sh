@@ -18,6 +18,7 @@ COMPOSE_CONTENT=$(cat "$SCRIPT_DIR/docker-compose.yml")
 CLOUDWATCH_CONFIG=$(cat "$SCRIPT_DIR/barista-cloudwatch-agent.json")
 
 COMMANDS=$(cat <<EOF
+set -e
 sudo mkdir -p /opt/barista
 sudo mkdir -p /opt/aws/amazon-cloudwatch-agent/etc
 

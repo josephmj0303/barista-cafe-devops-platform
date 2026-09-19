@@ -23,6 +23,7 @@ PROMETHEUS_CONFIG=$(sed \
   "$SCRIPT_DIR/prometheus-config.yml")
 
 COMMANDS=$(cat <<EOF
+set -e
 sudo mkdir -p /opt/barista-monitoring/prometheus
 sudo mkdir -p /opt/barista-monitoring/grafana/provisioning/datasources
 
