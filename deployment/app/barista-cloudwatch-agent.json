@@ -1,0 +1,40 @@
+cat > /tmp/barista-cloudwatch-agent.json <<'EOF'
+{
+  "agent": {
+    "metrics_collection_interval": 60,
+    "run_as_user": "root"
+  },
+  "logs": {
+    "logs_collected": {
+      "files": {
+        "collect_list": [
+          {
+            "file_path": "/var/log/cloud-init.log",
+            "log_group_name": "/barista/system",
+            "log_stream_name": "{instance_id}/cloud-init",
+            "timezone": "UTC"
+          },
+          {
+            "file_path": "/var/log/cloud-init-output.log",
+            "log_group_name": "/barista/system",
+            "log_stream_name": "{instance_id}/cloud-init-output",
+            "timezone": "UTC"
+          },
+          {
+            "file_path": "/var/log/amazon/ssm/amazon-ssm-agent.log",
+            "log_group_name": "/barista/system",
+            "log_stream_name": "{instance_id}/ssm",
+            "timezone": "UTC"
+          },
+          {
+            "file_path": "/var/lib/docker/containers/*/*-json.log",
+            "log_group_name": "/barista/docker",
+            "log_stream_name": "{instance_id}/docker",
+            "timezone": "UTC"
+          }
+        ]
+      }
+    }
+  }
+}
+EOF

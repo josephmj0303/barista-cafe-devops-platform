@@ -38,6 +38,7 @@ resource "aws_instance" "app" {
 
     dnf update -y
     dnf install -y docker
+    dnf install -y amazon-cloudwatch-agent
 
     systemctl enable docker
     systemctl start docker

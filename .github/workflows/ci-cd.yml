@@ -15,9 +15,9 @@ env:
   BACKEND_IMAGE: josephmj0303/barista-cafe-backend
   FRONTEND_IMAGE: josephmj0303/barista-cafe-frontend
   AWS_REGION: us-east-1
-  APP_INSTANCE_ID: i-0088382b68b58c41d
 
 jobs:
+
   test-and-scan:
     name: Test and Security Scan
     runs-on: ubuntu-latest
@@ -89,7 +89,7 @@ jobs:
       - name: Scan backend image
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: josephmj0303/barista-cafe-backend:ci
+          image-ref: ${{ env.BACKEND_IMAGE }}:ci
           format: table
           severity: CRITICAL,HIGH
           ignore-unfixed: true
@@ -98,7 +98,7 @@ jobs:
       - name: Scan frontend image
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: josephmj0303/barista-cafe-frontend:ci
+          image-ref: ${{ env.FRONTEND_IMAGE }}:ci
           format: table
           severity: CRITICAL,HIGH
           ignore-unfixed: true
@@ -172,6 +172,9 @@ jobs:
     environment: staging
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -179,13 +182,44 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Deploy to EC2
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Initialize Terraform
+        working-directory: terraform
+        run: terraform init -input=false
+
+      - name: Get infrastructure outputs
+        working-directory: terraform
         run: |
-          aws ssm send-command \
-            --instance-ids "${APP_INSTANCE_ID}" \
-            --document-name "AWS-RunShellScript" \
-            --parameters 'commands=["sudo docker compose -f /opt/barista/docker-compose.yml pull","sudo docker compose -f /opt/barista/docker-compose.yml up -d","sudo docker compose -f /opt/barista/docker-compose.yml ps"]' \
-            --comment "Deploy Barista Cafe staging"
+          echo "APP_INSTANCE_ID=$(terraform output -raw app_instance_id)" >> "$GITHUB_ENV"
+          echo "MONITORING_INSTANCE_ID=$(terraform output -raw monitoring_instance_id)" >> "$GITHUB_ENV"
+          echo "ALB_DNS_NAME=$(terraform output -raw alb_dns_name)" >> "$GITHUB_ENV"
+          echo "RDS_ENDPOINT=$(terraform output -raw rds_endpoint)" >> "$GITHUB_ENV"
+
+      - name: Make deployment scripts executable
+        run: |
+          chmod +x deployment/app/deploy-app.sh
+          chmod +x deployment/monitoring/deploy-monitoring.sh
+
+      - name: Deploy application
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          ./deployment/app/deploy-app.sh \
+            "$APP_INSTANCE_ID" \
+            "$RDS_ENDPOINT" \
+            "$DB_PASSWORD"
+
+      - name: Deploy monitoring
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          ./deployment/monitoring/deploy-monitoring.sh \
+            "$MONITORING_INSTANCE_ID" \
+            "$RDS_ENDPOINT" \
+            "$ALB_DNS_NAME" \
+            "$DB_PASSWORD"
 
   deploy-production:
     name: Deploy Production
@@ -195,6 +229,9 @@ jobs:
     environment: production
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -202,13 +239,31 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Deploy to production
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Initialize Terraform
+        working-directory: terraform
+        run: terraform init -input=false
+
+      - name: Get infrastructure outputs
+        working-directory: terraform
         run: |
-          aws ssm send-command \
-            --instance-ids "${APP_INSTANCE_ID}" \
-            --document-name "AWS-RunShellScript" \
-            --parameters 'commands=["sudo docker compose -f /opt/barista/docker-compose.yml pull","sudo docker compose -f /opt/barista/docker-compose.yml up -d","sudo docker compose -f /opt/barista/docker-compose.yml ps"]' \
-            --comment "Deploy Barista Cafe production"
+          echo "APP_INSTANCE_ID=$(terraform output -raw app_instance_id)" >> "$GITHUB_ENV"
+          echo "RDS_ENDPOINT=$(terraform output -raw rds_endpoint)" >> "$GITHUB_ENV"
+
+      - name: Make deployment script executable
+        run: |
+          chmod +x deployment/app/deploy-app.sh
+
+      - name: Deploy application
+        env:
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          ./deployment/app/deploy-app.sh \
+            "$APP_INSTANCE_ID" \
+            "$RDS_ENDPOINT" \
+            "$DB_PASSWORD"
 
   notify-failure:
     name: Notify Slack on Failure
