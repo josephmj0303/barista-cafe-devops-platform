@@ -186,7 +186,7 @@ The deployed application is accessed through the AWS Application Load Balancer.
 
 ## Application Evidence
 
-![Deployed Application](docs/screenshots/01-application-deployed.png)
+![Deployed Application](docs/screenshots/application-deployed.png)
 
 ---
 
@@ -329,7 +329,7 @@ latest
 
 ### CI/CD Evidence
 
-![Successful CI/CD Pipeline](docs/screenshots/02-cicd-pipeline-success.png)
+![Successful CI/CD Pipeline](docs/screenshots/cicd-pipeline-success.png)
 
 ---
 
@@ -346,7 +346,7 @@ The staging environment performs the pre-production deployment.
 
 The production environment is protected by a required reviewer, creating a manual approval gate before the production deployment job can continue.
 
-![Production Manual Approval](docs/screenshots/03-production-manual-approval.png)
+![Production Manual Approval](docs/screenshots/production-manual-approval.png)
 
 ### Important architecture note
 
@@ -397,7 +397,7 @@ The backend exposes application metrics for:
 - Total requests
 - HTTP 5xx error rate
 
-![Application Metrics](docs/screenshots/05-grafana-application-metrics.png)
+![Application Metrics](docs/screenshots/grafana-application-metrics.png)
 
 ## Infrastructure and Database Metrics
 
@@ -435,7 +435,7 @@ Representative log groups include:
 /barista/docker
 ```
 
-![CloudWatch Docker/Application Logs](docs/screenshots/06-cloudwatch-docker-logs.png)
+![CloudWatch Docker/Application Logs](docs/screenshots/cloudwatch-docker-logs.png)
 
 Logs can be reviewed centrally without requiring direct SSH access to the application host.
 
@@ -542,7 +542,7 @@ The notification includes:
 - Run number
 - Commit SHA
 
-![Slack Failure Notification](docs/screenshots/04-slack-failure-notification.png)
+![Slack Failure Notification](docs/screenshots/slack-failure-notification.png)
 
 The failure path was deliberately tested and the temporary test modification was reverted from the final workflow.
 
