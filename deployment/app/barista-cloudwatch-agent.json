@@ -1,4 +1,3 @@
-cat > /tmp/barista-cloudwatch-agent.json <<'EOF'
 {
   "agent": {
     "metrics_collection_interval": 60,
@@ -37,4 +36,3 @@ cat > /tmp/barista-cloudwatch-agent.json <<'EOF'
     }
   }
 }
-EOF
