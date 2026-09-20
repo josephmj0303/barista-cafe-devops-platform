@@ -1,4 +1,3 @@
-sudo tee /opt/barista-monitoring/grafana/provisioning/datasources/prometheus.yml > /dev/null <<'EOF'
 apiVersion: 1
 
 datasources:
@@ -8,4 +7,3 @@ datasources:
     url: http://prometheus:9090
     isDefault: true
     editable: false
-EOF
