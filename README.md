@@ -13,7 +13,7 @@ This project was developed as an end-to-end DevOps assignment with an emphasis o
 
 ---
 
-## Architecture
+## 🚀 Architecture
 
 ### AWS Architecture
 
@@ -25,7 +25,7 @@ This project was developed as an end-to-end DevOps assignment with an emphasis o
 
 ---
 
-## Project Overview
+## 📌 Project Overview
 
 The platform uses:
 
@@ -43,7 +43,7 @@ The platform uses:
 
 ---
 
-## Technology Stack
+## ⚙️ Technology Stack
 
 | Area | Technology |
 |---|---|
@@ -67,7 +67,7 @@ The platform uses:
 
 ---
 
-## AWS Infrastructure
+## 🖥️ AWS Infrastructure
 
 Terraform provisions:
 
@@ -110,7 +110,7 @@ The application and database tiers are not directly exposed as public applicatio
 
 ---
 
-## Repository Structure
+## 📂 Repository Structure
 
 ```text
 barista-cafe-devops-platform/
@@ -172,7 +172,7 @@ barista-cafe-devops-platform/
 
 ---
 
-# Application
+## 🎯Application
 
 The application contains:
 
@@ -190,7 +190,7 @@ The deployed application is accessed through the AWS Application Load Balancer.
 
 ---
 
-# Containerization
+## Containerization
 
 The application is packaged as two Docker images:
 
@@ -212,43 +212,43 @@ PostgreSQL Exporter
 
 ---
 
-# Terraform
+## Terraform
 
 Terraform is the source of truth for AWS infrastructure.
 
-## Initialize
+### Initialize
 
 ```bash
 cd terraform
 terraform init
 ```
 
-## Format and validate
+### Format and validate
 
 ```bash
 terraform fmt -recursive
 terraform validate
 ```
 
-## Review the plan
+### Review the plan
 
 ```bash
 terraform plan
 ```
 
-## Apply
+### Apply
 
 ```bash
 terraform apply
 ```
 
-## View outputs
+### View outputs
 
 ```bash
 terraform output
 ```
 
-## Destroy when no longer required
+### Destroy when no longer required
 
 ```bash
 terraform destroy
@@ -258,7 +258,7 @@ The infrastructure was tested using a complete destroy/recreate lifecycle to ver
 
 ---
 
-# Terraform State Management
+## Terraform State Management
 
 Terraform state is stored remotely in an encrypted S3 backend.
 
@@ -275,11 +275,11 @@ The S3 backend provides shared state storage for local operations and GitHub Act
 
 ---
 
-# CI/CD Pipeline
+## 🔄 CI/CD Pipeline
 
 GitHub Actions implements the complete CI/CD workflow.
 
-## Pull Requests
+### Pull Requests
 
 Pull requests targeting `main` execute validation and security checks.
 
@@ -298,7 +298,7 @@ The pipeline includes:
 
 No AWS deployment occurs from the pull-request validation path.
 
-## Main Branch
+### Main Branch
 
 A successful push to `main` continues through:
 
@@ -333,7 +333,7 @@ latest
 
 ---
 
-# Staging and Production
+## Staging and Production
 
 GitHub Environments are used for:
 
@@ -356,7 +356,7 @@ This keeps the assignment architecture small and cost-conscious while demonstrat
 
 ---
 
-# Deployment Automation
+## Deployment Automation
 
 Deployment is performed through AWS Systems Manager rather than SSH.
 
@@ -383,7 +383,7 @@ The deployment scripts use fail-fast shell behavior so remote failures propagate
 
 ---
 
-# Monitoring and Observability
+## Monitoring and Observability
 
 Monitoring is implemented with Prometheus and Grafana.
 
@@ -418,7 +418,7 @@ Two meaningful Grafana dashboards are provided:
 
 ---
 
-# Centralized Logging
+## 📊 Centralized Logging
 
 Amazon CloudWatch Logs provides centralized logging for the environment.
 
@@ -441,7 +441,7 @@ Logs can be reviewed centrally without requiring direct SSH access to the applic
 
 ---
 
-# Security
+## 🔐 Security
 
 Security controls implemented in the project include:
 
@@ -459,7 +459,7 @@ Security controls implemented in the project include:
 
 ---
 
-# Secret Management
+## 🔒 Secret Management
 
 The assignment requires at least one of secret management or backup strategy.
 
@@ -484,7 +484,7 @@ No actual credentials are stored in the repository.
 
 ---
 
-# Cost Optimization
+## Cost Optimization
 
 The infrastructure is intentionally sized for an assignment/demo workload.
 
@@ -503,7 +503,7 @@ The environment is not intended to represent production-scale capacity.
 
 ---
 
-# Infrastructure Reproducibility
+## 🧠 Infrastructure Reproducibility
 
 A fresh infrastructure lifecycle was tested:
 
@@ -530,7 +530,7 @@ This validated that the application and monitoring deployments do not depend on 
 
 ---
 
-# Failure Notification
+## 🔔 Failure Notification
 
 The CI/CD workflow includes a failure notification job that sends a Slack notification when an upstream pipeline job fails.
 
@@ -548,7 +548,7 @@ The failure path was deliberately tested and the temporary test modification was
 
 ---
 
-# Validation and Evidence
+## Validation and Evidence
 
 The project was validated through:
 
@@ -576,7 +576,7 @@ docs/screenshots/
 
 ---
 
-# Documentation
+## Documentation
 
 Additional assignment documentation:
 
@@ -587,7 +587,7 @@ These documents explain the architecture decisions, implementation approach, tro
 
 ---
 
-# Key DevOps Practices Demonstrated
+## 🧠 Key DevOps Practices Demonstrated
 
 - Infrastructure as Code
 - Remote Terraform state
@@ -610,7 +610,7 @@ These documents explain the architecture decisions, implementation approach, tro
 
 ---
 
-# Assignment Coverage
+## 📦 Assignment Coverage
 
 | Assignment Requirement | Implementation |
 |---|---|
@@ -647,7 +647,7 @@ These documents explain the architecture decisions, implementation approach, tro
 
 ---
 
-# Project Status
+## 🏁 Project Status
 
 The assignment implementation is complete and has been validated end-to-end.
 
@@ -666,3 +666,11 @@ The repository contains:
 - Screenshots/evidence
 - Approach documentation
 - Challenges and resolutions
+
+---
+
+## 👨‍💻 Author
+
+Joseph M J
+
+DevOps Engineer Assignment Project
