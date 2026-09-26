@@ -21,9 +21,9 @@ Each issue should be handled independently:
 Establish Flask backend and PostgreSQL data layer
 
 Repository steps
-Verify the existing Flask backend structure, PostgreSQL configuration, models, and API endpoints.
-Add/update the backend documentation or API comments so the implemented contact and reservation persistence is clearly represented.
-Commit the documentation/configuration representation of the completed backend implementation.
+1. Verify the existing Flask backend structure, PostgreSQL configuration, models, and API endpoints.
+2. Add/update the backend documentation or API comments so the implemented contact and reservation persistence is clearly represented.
+3. Commit the documentation/configuration representation of the completed backend implementation.
 
 ## PR
 Description
@@ -43,6 +43,34 @@ Completed the Flask backend and PostgreSQL persistence implementation.
 Verified contact and reservation requests are persisted successfully in PostgreSQL.
 
 Closes #1
+
+---
+
+## Issue #2
+Fix reservation phone-number validation
+
+Repository steps
+1. Update the reservation phone validation pattern to match the corrected implementation already tested during development.
+2. Update the related frontend/backend validation documentation if necessary.
+3. Verify that a valid reservation can be submitted successfully.
+
+PR
+
+Description
+
+## Summary
+
+Correct the reservation phone-number validation used by the application.
+
+- Updated phone validation
+- Valid reservation requests accepted
+- Invalid input remains rejected
+
+## Verification
+
+Confirmed successful reservation submission and PostgreSQL persistence.
+
+Closes #3
 
 ---
 
