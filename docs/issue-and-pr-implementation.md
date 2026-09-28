@@ -74,4 +74,31 @@ Closes #3
 
 ---
 
+## Issue #3
+Correct PostgreSQL connectivity between Docker services
+
+Repository steps
+1. Verify the backend database configuration uses the Docker Compose PostgreSQL service name rather than localhost.
+2. Confirm the Compose network allows backend-to-PostgreSQL communication.
+3. Validate the backend health endpoint and database connectivity.
+
+PR
+
+Description
+
+## Summary
+
+Correct backend-to-PostgreSQL connectivity in the Docker Compose environment.
+
+- Use the PostgreSQL Compose service name
+- Remove incorrect container-local localhost dependency
+- Verify backend/database communication
+
+## Verification
+
+Confirmed the backend connects successfully to PostgreSQL through Docker Compose.
+
+Closes #5
+
+---
 
