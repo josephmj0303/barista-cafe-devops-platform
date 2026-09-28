@@ -54,7 +54,7 @@ Repository steps
 2. Update the related frontend/backend validation documentation if necessary.
 3. Verify that a valid reservation can be submitted successfully.
 
-PR
+## PR
 
 Description
 
@@ -82,7 +82,7 @@ Repository steps
 2. Confirm the Compose network allows backend-to-PostgreSQL communication.
 3. Validate the backend health endpoint and database connectivity.
 
-PR
+## PR
 
 Description
 
@@ -99,6 +99,36 @@ Correct backend-to-PostgreSQL connectivity in the Docker Compose environment.
 Confirmed the backend connects successfully to PostgreSQL through Docker Compose.
 
 Closes #5
+
+---
+
+## Issue #4
+Containerize the Barista Café application
+
+Repository steps
+1. Verify the frontend, backend and PostgreSQL services are represented in Docker Compose.
+2. Verify Dockerfiles, environment configuration, networking and persistent PostgreSQL storage.
+3. Run the complete stack and verify contact/reservation functionality.
+
+## PR
+
+Description
+
+## Summary
+
+Containerize the Barista Café application using Docker Compose.
+
+- Frontend container
+- Flask backend container
+- PostgreSQL service
+- Compose networking
+- Persistent database storage
+
+## Verification
+
+Verified the complete application stack and confirmed contact and reservation requests are persisted.
+
+Closes #7
 
 ---
 
