@@ -132,3 +132,32 @@ Closes #7
 
 ---
 
+## Issue #5
+Add backend health endpoint and automated application test
+
+Repository steps
+1. Verify the /api/health endpoint returns the expected successful response.
+2. Add/update the automated test covering the health endpoint.
+3. Execute the test locally.
+
+## PR
+
+Description
+
+## Summary
+
+Add automated validation for the backend health endpoint.
+
+- Validate `/api/health`
+- Add automated backend health test
+- Provide a lightweight CI smoke test
+
+## Verification
+
+Backend health test passes successfully.
+
+Closes #9
+
+---
+
+
