@@ -160,4 +160,29 @@ Closes #9
 
 ---
 
+## Issue #6
+Add CI validation for application and Docker build
 
+Repository steps
+1. Verify the GitHub Actions CI workflow runs application tests and required validation.
+2. Verify the Docker build is included in CI validation.
+3. Confirm CI failures prevent the workflow from proceeding successfully.
+
+## PR
+
+Description
+
+## Summary
+
+Add automated CI validation for the application and Docker build.
+
+- Run backend tests
+- Validate application changes
+- Build Docker components
+- Fail CI when validation fails
+
+## Verification
+
+Validated the GitHub Actions workflow successfully.
+
+Closes #11
