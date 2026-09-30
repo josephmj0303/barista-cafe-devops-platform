@@ -155,3 +155,25 @@ Closes #13
 
 ---
 
+## Issue #8
+Provision AWS infrastructure with Terraform
+Repository steps
+1. Verify the Terraform configuration for the AWS networking, compute, database, load balancing and security resources.
+2. Run Terraform formatting and validation.
+3. Review the configuration against the deployed AWS architecture.
+## PR
+Description
+## Summary
+Add Terraform-based AWS infrastructure provisioning.
+- AWS networking
+- EC2 compute
+- PostgreSQL database
+- Load balancing
+- Security configuration
+## Verification
+Terraform configuration was validated against the deployed AWS environment.
+Closes #15
+
+---
+
+
