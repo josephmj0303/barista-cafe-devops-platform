@@ -176,4 +176,23 @@ Closes #15
 
 ---
 
+## Issue #9
+Protect Terraform state and infrastructure secrets
+Repository steps
+1. Verify Terraform state is configured for controlled remote storage.
+2. Verify sensitive values are supplied through variables/secrets rather than committed credentials.
+3. Search the repository for accidentally committed secrets or sensitive configuration.
+## PR
+Description
+## Summary
+Improve infrastructure secret and Terraform state handling.
+- Controlled Terraform state storage
+- Externalized sensitive configuration
+- Repository secret verification
+## Verification
+Reviewed the repository and confirmed sensitive credentials are not committed.
+Closes #17
+
+---
+
 
