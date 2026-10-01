@@ -215,3 +215,22 @@ Closes #19
 
 ---
 
+## Issue #11
+Make SSM deployment failures propagate correctly
+Repository steps
+1. Verify SSM command execution status is checked by the deployment workflow.
+2. Ensure remote command failures cause the GitHub Actions job to fail.
+3. Validate both successful and failed deployment behavior.
+## PR
+Description
+## Summary
+Improve deployment reliability by correctly propagating AWS Systems Manager command failures.
+- Validate SSM command execution
+- Fail the GitHub Actions job on deployment errors
+- Improve deployment failure visibility
+## Verification
+Validated deployment failure handling through the CI/CD workflow.
+Closes #21
+
+---
+
