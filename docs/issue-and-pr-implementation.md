@@ -195,4 +195,23 @@ Closes #17
 
 ---
 
+## Issue #10
+Implement AWS application deployment through GitHub Actions
+Repository steps
+1. Verify the GitHub Actions deployment workflow and AWS authentication configuration.
+2. Verify AWS Systems Manager is used for the EC2 deployment path where applicable.
+3. Validate a successful deployment from GitHub Actions.
+## PR
+Description
+## Summary
+Automate AWS application deployment through GitHub Actions.
+- GitHub Actions deployment workflow
+- AWS integration
+- Systems Manager command execution
+- Automated application deployment
+## Verification
+Successfully validated deployment through the CI/CD workflow.
+Closes #19
+
+---
 
