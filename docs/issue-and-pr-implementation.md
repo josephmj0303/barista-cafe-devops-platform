@@ -234,3 +234,24 @@ Closes #21
 
 ---
 
+## Issue #12
+Add application and infrastructure monitoring
+Repository steps
+1. Verify Prometheus, Grafana and the configured exporters/metrics collection.
+2. Verify infrastructure and application-related dashboards.
+3. Validate that Prometheus can scrape the configured targets and Grafana can query the metrics.
+## PR
+Description
+## Summary
+Add monitoring for the deployed application and infrastructure.
+- Prometheus metrics
+- Grafana dashboards
+- Infrastructure metrics
+- PostgreSQL/application visibility
+## Verification
+Confirmed Prometheus collection and Grafana dashboard visualization.
+Closes #23
+
+---
+
+
