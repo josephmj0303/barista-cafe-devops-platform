@@ -254,4 +254,23 @@ Closes #23
 
 ---
 
+## Issue #13
+Correct Grafana dashboard queries and JSON configuration
+Repository steps
+1. Correct the Grafana dashboard JSON configuration.
+2. Fix the affected PromQL expressions, including the 5xx query.
+3. Import/validate the dashboard and confirm the panels display correctly.
+## PR
+Description
+## Summary
+Correct Grafana dashboard configuration and PromQL queries.
+- Fix dashboard JSON
+- Correct PromQL expressions
+- Correct HTTP 5xx monitoring
+- Validate dashboard panels
+## Verification
+Dashboard imported successfully and queries returned the expected metrics.
+Closes #25
+
+---
 
