@@ -274,3 +274,22 @@ Closes #25
 
 ---
 
+## Issue #14
+Add centralized application logging
+Repository steps
+1. Verify application logging configuration.
+2. Verify the AWS centralized logging configuration and log collection.
+3. Generate application activity and confirm the logs are available centrally.
+## PR
+Description
+## Summary
+Add centralized application logging for operational troubleshooting.
+- Application logging
+- Centralized AWS log collection
+- Deployment/runtime visibility
+## Verification
+Generated application activity and confirmed logs are available through the configured centralized logging destination.
+Closes #27
+
+---
+
