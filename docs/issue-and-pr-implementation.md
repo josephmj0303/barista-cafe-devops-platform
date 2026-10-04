@@ -293,3 +293,22 @@ Closes #27
 
 ---
 
+## Issue #15
+Add deployment failure notification
+Repository steps
+1. Verify the CI/CD failure notification configuration.
+2. Confirm notifications are triggered for failed pipeline/deployment executions.
+3. Validate the notification using a controlled failure scenario.
+## PR
+Description
+## Summary
+Add notifications for CI/CD deployment failures.
+- Failure notification handling
+- Actionable pipeline alerts
+- Controlled failure verification
+## Verification
+Confirmed that the configured notification is triggered for failed workflow executions.
+Closes #29
+
+---
+
