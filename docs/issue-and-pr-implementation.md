@@ -335,3 +335,23 @@ Closes #31
 
 ---
 
+## Issue #17
+Remove infrastructure-specific identifiers and sensitive artifacts
+Repository steps
+1. Search tracked project files for AWS instance IDs, credentials, generated state files and other environment-specific values.
+2. Remove or replace values that should not be committed.
+3. Repeat the repository search and verify the final repository is clean.
+## PR
+Description
+## Summary
+Perform the final repository security and cleanup review.
+- Search for infrastructure-specific identifiers
+- Remove unnecessary environment-specific values
+- Verify generated/sensitive artifacts are excluded
+- Recheck tracked project files
+## Verification
+Completed repository searches and confirmed the final source tree does not unnecessarily expose environment-specific identifiers.
+Closes #33
+
+---
+
