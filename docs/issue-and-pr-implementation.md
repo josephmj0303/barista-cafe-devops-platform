@@ -312,3 +312,26 @@ Closes #29
 
 ---
 
+## Issue #16
+Add repository documentation and architecture diagrams
+Repository steps
+1. Verify the root README and supporting documentation describe the application, DevOps architecture and deployment process.
+2. Add/update architecture diagrams and relevant screenshots.
+3. Review the documentation against the completed implementation.
+## PR
+Description
+## Summary
+Document the completed Barista Café DevOps platform.
+- Project architecture
+- AWS architecture
+- Docker architecture
+- CI/CD workflow
+- Monitoring and logging
+- Deployment documentation
+- Architecture diagrams and screenshots
+## Verification
+Reviewed documentation against the implemented project.
+Closes #31
+
+---
+
